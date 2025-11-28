@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aniversário de 10 Anos - Ana Luiza 🎂</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .container::before {
+            content: '🎈🎉🎂🎁✨';
+            position: absolute;
+            top: -10px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 30px;
+            letter-spacing: 15px;
+            opacity: 0.3;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header .emoji {
+            font-size: 60px;
+            margin-bottom: 10px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .header h1 {
+            color: #e91e63;
+            font-size: 32px;
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(233, 30, 99, 0.2);
+        }
+
+        .header .subtitle {
+            color: #f06292;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #ec407a;
+            font-size: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            color: #e91e63;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        label .required {
+            color: #f50057;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 3px solid #f8bbd0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        input[type="text"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #f06292;
+            box-shadow: 0 0 0 4px rgba(240, 98, 146, 0.1);
+            transform: translateY(-2px);
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .info-text {
+            color: #f06292;
+            font-size: 13px;
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(245, 87, 108, 0.4);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 26px;
+            }
+
+            .header .subtitle {
+                font-size: 20px;
+            }
+        }
+
+        .message {
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            display: none;
+            animation: slideIn 0.3s ease;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+            color: #155724;
+            border: 3px solid #51cf66;
+        }
+
+        .error-message {
+            background: #ffe0e6;
+            color: #c62828;
+            border: 3px solid #f5576c;
+        }
+
+        .loading-message {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #0c5460;
+            border: 3px solid #81d4fa;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #f8bbd0, transparent);
+            margin: 30px 0;
+        }
+
+        .party-info {
+            background: linear-gradient(135deg, #fff5f7 0%, #ffe6f0 100%);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            border: 2px solid #f8bbd0;
+        }
+
+        .party-info h3 {
+            color: #e91e63;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .party-info p {
+            color: #c2185b;
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .party-info strong {
+            color: #ad1457;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="emoji">🎂</div>
+            <h1>Aniversário de 10 Anos</h1>
+            <div class="subtitle">Ana Luiza 🎉</div>
+            <p>Confirme sua presença!</p>
+        </div>
+
+        <div class="party-info">
+            <h3>📅 Informações da Festa</h3>
+            <p><strong>Data:</strong> Sábado, 06 de dezembro de 2025</p>
+            <p><strong>Horário:</strong> 16h30 às 20h30</p>
+            <p><strong>Local:</strong> Alphaville Eventos - Av. Rio Amazonas, 195, Alphaville Fazendinha, Macapá/AP</p>
+        </div>
+
+        <div id="successMessage" class="message success-message">
+            🎉 Presença confirmada com sucesso! Nos vemos na festa! 🎈
+        </div>
+
+        <div id="errorMessage" class="message error-message">
+            ❌ Erro ao confirmar presença. Por favor, tente novamente.
+        </div>
+
+        <div id="loadingMessage" class="message loading-message">
+            <span class="spinner"></span> Confirmando sua presença...
+        </div>
+
+        <form id="aniversarioForm">
+            <!-- Nome do Convidado -->
+            <div class="form-group">
+                <label for="nomeConvidado">
+                    👤 Seu Nome <span class="required">*</span>
+                </label>
+                <input 
+                    type="text" 
+                    id="nomeConvidado" 
+                    name="nomeConvidado" 
+                    required 
+                    placeholder="Digite seu nome completo"
+                >
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Nome do Acompanhante -->
+            <div class="form-group">
+                <label for="nomeAcompanhante">
+                    👥 Nome do Acompanhante
+                </label>
+                <input 
+                    type="text" 
+                    id="nomeAcompanhante" 
+                    name="nomeAcompanhante" 
+                    placeholder="Digite o nome do acompanhante (opcional)"
+                >
+                <p class="info-text">Deixe em branco se vier sozinho(a)</p>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Observações -->
+            <div class="form-group">
+                <label for="observacoes">
+                    📝 Observações
+                </label>
+                <textarea 
+                    id="observacoes" 
+                    name="observacoes" 
+                    placeholder="Alguma observação? Restrição alimentar, necessidade especial, etc. (opcional)"
+                ></textarea>
+                <p class="info-text">Campo opcional para informações adicionais</p>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">
+                🎉 Confirmar Presença
+            </button>
+        </form>
+    </div>
+
+    <script>
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzBjPWBFJxGveGulk1OKWFwRffY70qdwHDcBSCpKhs2bs4w2Y0kLt7qMB-BKr-G6FWzrA/exec';
+        
+        const successMessage = document.getElementById('successMessage');
+        const errorMessage = document.getElementById('errorMessage');
+        const loadingMessage = document.getElementById('loadingMessage');
+
+        function showMessage(element, duration = 5000) {
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+            loadingMessage.style.display = 'none';
+            
+            element.style.display = 'block';
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            if (element !== loadingMessage && duration > 0) {
+                setTimeout(() => {
+                    element.style.display = 'none';
+                }, duration);
+            }
+        }
+
+        // Envio do formulário
+        const form = document.getElementById('aniversarioForm');
+        
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="spinner"></span> Confirmando...';
+            
+            showMessage(loadingMessage, 0);
+            
+            // Coletar dados
+            const formData = {
+                nomeConvidado: document.getElementById('nomeConvidado').value,
+                nomeAcompanhante: document.getElementById('nomeAcompanhante').value || 'Sem acompanhante',
+                observacoes: document.getElementById('observacoes').value || 'Nenhuma observação',
+                dataConfirmacao: new Date().toLocaleString('pt-BR')
+            };
+
+            console.log('📤 Enviando confirmação:', formData);
+
+            try {
+                const response = await fetch(SCRIPT_URL, {
+                    redirect: 'follow',
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'text/plain;charset=utf-8',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                console.log('📥 Response status:', response.status);
+
+                if (response.ok || response.status === 200 || response.status === 0) {
+                    showMessage(successMessage);
+                    
+                    // Resetar formulário após 3 segundos
+                    setTimeout(() => {
+                        form.reset();
+                    }, 3000);
+                } else {
+                    showMessage(errorMessage);
+                }
+                
+            } catch (error) {
+                console.error('❌ Erro:', error);
+                showMessage(errorMessage);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '🎉 Confirmar Presença';
+            }
+        });
+    </script>
+</body>
+</html>
